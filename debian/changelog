@@ -1,0 +1,5 @@
+lm4tools (20140816~a565880+dfsg-1) unstable; urgency=medium
+
+  * Initial release. (Closes: #759294)
+
+ -- Agustin Henze <tin@debian.org>  Sun, 24 Aug 2014 16:18:53 -0700

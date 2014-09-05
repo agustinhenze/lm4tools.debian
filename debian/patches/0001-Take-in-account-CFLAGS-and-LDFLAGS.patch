@@ -1,0 +1,22 @@
+From: Agustin Henze <tin@sluc.org.ar>
+Date: Tue, 26 Aug 2014 15:58:42 -0700
+Subject: Take in account CFLAGS and LDFLAGS
+
+---
+ lm4flash/Makefile | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/lm4flash/Makefile b/lm4flash/Makefile
+index e309282..023dc6d 100644
+--- a/lm4flash/Makefile
++++ b/lm4flash/Makefile
+@@ -1,7 +1,7 @@
+ EXE := lm4flash
+ 
+-CFLAGS := -Wall $(shell pkg-config --cflags libusb-1.0)
+-LDFLAGS := $(shell pkg-config --libs libusb-1.0)
++CFLAGS := $(CFLAGS) -Wall $(shell pkg-config --cflags libusb-1.0)
++LDFLAGS := $(LDFLAGS) $(shell pkg-config --libs libusb-1.0)
+ 
+ all: CFLAGS += -O2
+ all: $(EXE)

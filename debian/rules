@@ -1,0 +1,39 @@
+#!/usr/bin/make -f
+export DH_VERBOSE=1
+
+UVERSION := $(shell dpkg-parsechangelog -SVersion | cut -d- -f1)
+CHANGESET := $(shell echo $(UVERSION) | cut -d \~ -f2 | cut -d + -f1)
+PACKAGE_NAME := $(shell dpkg-parsechangelog -SSource)
+CFLAGS := $(shell dpkg-buildflags --get CFLAGS)
+CFLAGS += $(shell dpkg-buildflags --get CPPFLAGS)
+LDFLAGS := $(shell dpkg-buildflags --get LDFLAGS)
+
+%:
+	dh $@
+
+override_dh_clean:
+	dh_clean
+	rm -rf debian/tmp
+	rm -f debian/lm4flash.1
+	dh_auto_clean -D lm4flash/
+	dh_auto_clean -D lmicdiusb/
+
+override_dh_auto_build:
+	dh_auto_build -D lm4flash
+	dh_auto_build -D lmicdiusb
+
+override_dh_installman:
+	help2man -n "Command-line firmware flashing tool to communicate with the Stellaris Launchpad" \
+		lm4flash/lm4flash > debian/lm4flash.1
+	dh_installman
+
+get-orig-source:
+	@if [ ! -d "debian" ] ; then \
+		echo 'Run this from the top directory of the Debian source' >&2; \
+		exit 1; \
+	fi
+	mkdir -p debian/tmp
+	wget https://github.com/utzig/lm4tools/archive/$(CHANGESET).zip -O debian/tmp/lm4tools.zip
+	unzip debian/tmp/lm4tools.zip -d debian/tmp
+	rm -rf debian/tmp/$(PACKAGE_NAME)-$(CHANGESET)*/lm4f120icdi
+	tar -v -c --xz -C debian/tmp/$(PACKAGE_NAME)-$(CHANGESET)* -f ../$(PACKAGE_NAME)_$(UVERSION).orig.tar.xz .

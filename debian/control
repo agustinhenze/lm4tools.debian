@@ -1,0 +1,36 @@
+Source: lm4tools
+Section: devel
+Priority: extra
+Maintainer: Agustin Henze <tin@debian.org>
+Build-Depends:
+ debhelper (>= 9.0.0),
+ xz-utils,
+ libusb-1.0-0-dev,
+ pkg-config,
+ help2man,
+Standards-Version: 3.9.5
+Homepage: https://github.com/utzig/lm4tools
+Vcs-Git: git://anonscm.debian.org/collab-maint/lm4tools.git
+Vcs-Browser: http://anonscm.debian.org/gitweb/?p=collab-maint/lm4tools.git
+
+Package: lm4flash
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Recommends: lmicdiusb
+Description: Command-line firmware flashing tool to communicate with the Stellaris Launchpad
+ Command-line firmware flashing tool using libusb-1.0 to communicate with the
+ Stellaris Launchpad ICDI
+ .
+ The Stellaris Launchpad is a low cost development board created by Texas
+ Instruments that comes with an ARM Cortex-M4F processor
+
+Package: lmicdiusb
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Recommends: lm4flash
+Description: Remote GDB socket over USB for Stellaris Launchpad ICDI
+ TCP/USB bridge created by TI, letting GDB communicate with the Stellaris
+ Launchpad ICDI
+ .
+ The Stellaris Launchpad is a low cost development board created by Texas
+ Instruments that comes with an ARM Cortex-M4F processor
