@@ -1,3 +1,11 @@
+lm4tools (20141201~5a4bc0b+dfsg-1) unstable; urgency=medium
+
+  * New upstream snapshot
+  * Refresh patch Take-in-account-CFLAGS-and-LDFLAGS
+  * Bumped Standard-Version to 3.9.6 (no changes required)
+
+ -- Agustin Henze <tin@debian.org>  Fri, 21 Aug 2015 17:11:18 +0200
+
 lm4tools (20140816~a565880+dfsg-1) unstable; urgency=medium
 
   * Initial release. (Closes: #759294)
