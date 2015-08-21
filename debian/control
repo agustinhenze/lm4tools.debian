@@ -8,7 +8,7 @@ Build-Depends:
  libusb-1.0-0-dev,
  pkg-config,
  help2man,
-Standards-Version: 3.9.5
+Standards-Version: 3.9.6
 Homepage: https://github.com/utzig/lm4tools
 Vcs-Git: git://anonscm.debian.org/collab-maint/lm4tools.git
 Vcs-Browser: http://anonscm.debian.org/gitweb/?p=collab-maint/lm4tools.git
